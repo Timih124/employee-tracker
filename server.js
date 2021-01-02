@@ -20,6 +20,8 @@ connection.connect(function (error) {
 
 // start the prompt
 function menu() {
+
+    // list of questions for node menu
     inquirer.prompt([
         {
             type: "list",
@@ -69,7 +71,7 @@ function viewDepartments() {
         menu();
     })
 }
-// view all rolles
+// view all roles
 function viewRoles() {
     connection.query("SELECT * FROM role", function (err, results) {
         console.table(results)
@@ -85,6 +87,8 @@ function viewEmployee() {
     })
 
 }
+
+// add employee to employee tracker
 function addEmployee() {
     connection.query("SELECT * FROM employee", function (err, employee) {
         if (err) throw err;
@@ -92,6 +96,7 @@ function addEmployee() {
 
         connection.query("SELECT * FROM role", function (err, roles) {
             var newRole = roles.map(roles => roles.title)
+            // inquirer prompt for questions to ask about new employees
             inquirer.prompt([
                 {
                     type: "input",
@@ -130,7 +135,7 @@ function addEmployee() {
 
 }
 
-
+// creating  function to addRole
 function addRole() {
     connection.query("SELECT * FROM department", function (err, departments) {
         var newDepartments = departments.map(department => department.name)
@@ -161,6 +166,8 @@ function addRole() {
     })
 
 }
+
+//  function to add new department
 function addDepartment() {
     inquirer.prompt([
         {
@@ -175,6 +182,7 @@ function addDepartment() {
         })
     })
 }
-function updateEmployee() {
 
+// still need to finish updateEmployee plan to get it
+function updateEmployee() {
 }
