@@ -124,7 +124,7 @@ function addEmployee() {
                 var role = roles.find(role => role.title === response.newRole)
                 var manager = employee.find(employee => (employee.first_name + " " + employee.last_name) === response.employeeManager)
 
-                connection.query("INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES(?, ?, ?, ?)", [response.firstName, response.lastName, role.id, newemployee.id], function (err, results) {
+                connection.query("INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES(?, ?, ?, ?)", [response.firstName, response.lastName, role, newemployee], function (err, results) {
                     console.log("Successfully added")
                     menu();
                 })
